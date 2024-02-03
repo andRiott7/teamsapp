@@ -19,12 +19,14 @@
       "@storage/*": [
         "./src/storage/*"
       ],
-      "@theme/*": [
-        "./src/theme/*"
-      ],
       "@utils/*": [
         "./src/utils/*"
       ]
-    }
+    },
+    "types": [
+      "@types/react",
+      "@types/react-native",
+      "@types/styled-components"
+    ]
   }
 }
