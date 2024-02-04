@@ -13,10 +13,12 @@
     "expo": "~49.0.15",
     "expo-font": "^11.10.2",
     "expo-status-bar": "~1.6.0",
+    "phosphor-react-native": "^2.0.0",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "styled-component": "^2.8.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "react-native-svg": "13.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
