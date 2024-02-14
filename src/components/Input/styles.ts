@@ -13,7 +13,6 @@ export const Container = styled(TextInput)`
   font-size: ${theme.FONT_SIZE.MD}px;
   `};
 
-  margin-bottom: 20px;
   border-radius: 6px;
   padding: 16px;
 `;

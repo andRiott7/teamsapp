@@ -26,6 +26,7 @@ export function Groups() {
         ListEmptyComponent={() => (
           <ListEmpty message={`No teams found`} />
         )}
+        showsVerticalScrollIndicator={false}
       />
       <Button
         title="Create new team" />
