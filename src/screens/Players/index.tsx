@@ -10,22 +10,30 @@ import { PlayerCard } from '@components/PlayerCard';
 
 import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
 import { ListEmpty } from '@components/ListEmpty';
+import { useRoute } from '@react-navigation/native';
 
+type RouteParams = {
+  group: string;
+}
 export function Players() {
   const [team, setTeam] = useState('Time A')
   const [players, setPlayers] = useState(['Anton', 'Janzel', 'Fantom', 'Goriet', 'Vornez', 'Zaznam'])
+
+  const route = useRoute()
+  const { group } = route.params as RouteParams;
+
   return (
     <Container>
       <Header showBackButton />
 
 
       <Highlight
-        title="Team name"
+        title={group}
         subtitle="Add new members"
       />
       <Form>
         <Input
-          placeholder="Persons Name"
+          placeholder="Person Name"
           autoCorrect={false}
         />
 
