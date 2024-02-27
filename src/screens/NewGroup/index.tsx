@@ -48,6 +48,7 @@ export function NewGroup() {
           onChangeText={setGroup} />
         <Button
           title="Create"
+          style={{ marginTop: 20 }}
           onPress={handleNew}
         />
       </Content>
