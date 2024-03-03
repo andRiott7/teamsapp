@@ -20,11 +20,13 @@ import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
 
 import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
+import { Loading } from '@components/Loading';
 
 type RouteParams = {
   group: string;
 }
 export function Players() {
+  const [isLoading, setIsLoading] = useState(true);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [team, setTeam] = useState('Team A');
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([])
@@ -64,11 +66,15 @@ export function Players() {
 
   async function fetchPlayersByTeam() {
     try {
+      setIsLoading(true);
       const playersByTeam = await playersGetByGroupAndTeam(group, team);
-      setPlayers(playersByTeam)
+      setPlayers(playersByTeam);
     } catch (error) {
       console.log(error);
       Alert.alert('Players', 'Unable to load players from the selected team');
+    } finally {
+      setIsLoading(false);
+
     }
   }
 
@@ -137,18 +143,22 @@ export function Players() {
       </Form>
 
       <HeaderList>
-        <FlatList
-          data={['Team A', 'Team B']}
-          keyExtractor={item => item}
-          renderItem={({ item }) => (
-            <Filter
-              title={item}
-              isActive={item === team}
-              onPress={() => setTeam(item)}
+
+        {
+          isLoading ? <Loading /> :
+            <FlatList
+              data={['Team A', 'Team B']}
+              keyExtractor={item => item}
+              renderItem={({ item }) => (
+                <Filter
+                  title={item}
+                  isActive={item === team}
+                  onPress={() => setTeam(item)}
+                />
+              )}
+              horizontal
             />
-          )}
-          horizontal
-        />
+        }
 
         <NumberOfPlayers>
           {players.length}
@@ -170,14 +180,10 @@ export function Players() {
         contentContainerStyle={[{ paddingBottom: 100 }, players.length === 0 && { flex: 1 }]}
       />
       <Button
-        title="Remove Team"
+        title="Remove team"
         type="SECONDARY"
         onPress={handleGroupRemove}
       />
     </Container>
   )
 }
-
-// function playerRemoveByGroup(playerName: string, group: string) {
-//   throw new Error('Function not implemented.');
-// }
